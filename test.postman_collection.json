@@ -1,0 +1,129 @@
+{
+	"info": {
+		"_postman_id": "4c066e3f-78d6-4513-af98-fc466de14416",
+		"name": "API  Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "填写个人信息",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();  // 必须在所有测试之前定义",
+							"",
+							"pm.test(\"message为'OK'\", function () {",
+							"    pm.expect(jsonData.message).to.eql(\"OK\");  // 现在可以访问了",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"booking_id\": {{global_bookingId}},\n\t\"passport_first_name\": \"mao\",\n\t\"passport_last_name\": \"Tinaqq\",\n\t\"nationality\": \"USA\",\n\t\"birthday\": \"2015-01-01\",\n\t\"gender\": \"FEMALE\",\n\t\"email_address\": \"88@qq.com\",\n\t\"link_country_slug\": \"CN\",\n\t\"link_country_code\": 86,\n\t\"link_tel\": \"18051947316\",\n\t\"if_sync_to_user\": true,\n\t\"contact_address\": \"我\",\n\t\"city_region\": \"我\",\n\t\"state_province_country\": \"你\",\n\t\"zip_code\": \"1999\",\n\t\"country_region\": \"ESP\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.liuxueshenggongyu.com/api/v1/booking/fillPersonalInfo",
+					"protocol": "https",
+					"host": [
+						"api",
+						"liuxueshenggongyu",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"booking",
+						"fillPersonalInfo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "创建订单",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// 1. 解析接口返回的JSON响应数据",
+							"var responseData = pm.response.json();",
+							"",
+							"// 2. 提取data节点下的id（核心：匹配你的JSON结构）",
+							"var bookingId = responseData.data.id;",
+							"",
+							"// 3. 将id设置为全局变量（变量名自定义为global_bookingId，可任意命名）",
+							"pm.globals.set(\"global_bookingId\", bookingId);",
+							"",
+							"// 可选：打印日志，验证提取的值（在Console中查看）",
+							"console.log(\"提取的bookingId：\", bookingId);",
+							"",
+							"",
+							"",
+							"var jsonData = pm.response.json();  // 必须在所有测试之前定义",
+							"",
+							"pm.test(\"message为'OK'\", function () {",
+							"    pm.expect(jsonData.message).to.eql(\"OK\");  // 现在可以访问了",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"listing_id\": 1000565197,\n\t\"move_in_date\": \"2025-12-11\",\n\t\"move_out_date\": \"2027-01-01\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.liuxueshenggongyu.com/api/v1/booking/createBooking",
+					"protocol": "https",
+					"host": [
+						"api",
+						"liuxueshenggongyu",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"booking",
+						"createBooking"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
