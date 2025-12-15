@@ -6,59 +6,6 @@
 	},
 	"item": [
 		{
-			"name": "填写个人信息",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"var jsonData = pm.response.json();  // 必须在所有测试之前定义",
-							"",
-							"pm.test(\"message为'OK'\", function () {",
-							"    pm.expect(jsonData.message).to.eql(\"OK\");  // 现在可以访问了",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "{{Authorization}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"booking_id\": {{global_bookingId}},\n\t\"passport_first_name\": \"mao\",\n\t\"passport_last_name\": \"Tinaqq\",\n\t\"nationality\": \"USA\",\n\t\"birthday\": \"2015-01-01\",\n\t\"gender\": \"FEMALE\",\n\t\"email_address\": \"88@qq.com\",\n\t\"link_country_slug\": \"CN\",\n\t\"link_country_code\": 86,\n\t\"link_tel\": \"18051947316\",\n\t\"if_sync_to_user\": true,\n\t\"contact_address\": \"我\",\n\t\"city_region\": \"我\",\n\t\"state_province_country\": \"你\",\n\t\"zip_code\": \"1999\",\n\t\"country_region\": \"ESP\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "https://api.liuxueshenggongyu.com/api/v1/booking/fillPersonalInfo",
-					"protocol": "https",
-					"host": [
-						"api",
-						"liuxueshenggongyu",
-						"com"
-					],
-					"path": [
-						"api",
-						"v1",
-						"booking",
-						"fillPersonalInfo"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "创建订单",
 			"event": [
 				{
@@ -120,6 +67,59 @@
 						"v1",
 						"booking",
 						"createBooking"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "填写个人信息",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();  // 必须在所有测试之前定义",
+							"",
+							"pm.test(\"message为'OK'\", function () {",
+							"    pm.expect(jsonData.message).to.eql(\"OK\");  // 现在可以访问了",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"booking_id\": {{global_bookingId}},\n\t\"passport_first_name\": \"mao\",\n\t\"passport_last_name\": \"Tinaqq\",\n\t\"nationality\": \"USA\",\n\t\"birthday\": \"2015-01-01\",\n\t\"gender\": \"FEMALE\",\n\t\"email_address\": \"88@qq.com\",\n\t\"link_country_slug\": \"CN\",\n\t\"link_country_code\": 86,\n\t\"link_tel\": \"18051947316\",\n\t\"if_sync_to_user\": true,\n\t\"contact_address\": \"我\",\n\t\"city_region\": \"我\",\n\t\"state_province_country\": \"你\",\n\t\"zip_code\": \"1999\",\n\t\"country_region\": \"ESP\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.liuxueshenggongyu.com/api/v1/booking/fillPersonalInfo",
+					"protocol": "https",
+					"host": [
+						"api",
+						"liuxueshenggongyu",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"booking",
+						"fillPersonalInfo"
 					]
 				}
 			},
