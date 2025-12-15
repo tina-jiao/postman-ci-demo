@@ -29,5 +29,5 @@ jobs:
         run: |
           newman run test.postman_collection.json \
           # 若有环境文件，取消下面这行注释并替换文件名
-          # -e globals.postman_environment.json \
+          # -e env.postman_environment.json \
           --insecure  # 跳过HTTPS证书报错（新手必加）
