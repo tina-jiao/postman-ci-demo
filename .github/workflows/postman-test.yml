@@ -1,28 +1,28 @@
 name: Postman接口自动化（带HTML报告）
 on:
   push:
-    branches: [ main ] # 提交代码自动触发
-
+    branches: [ main ] # 代码提交自动触发
+  workflow_dispatch:   # 新增：允许手动触发
 jobs:
-  test:
+  # 以下内容不变（和之前的配置一致）
+  run-postman-test:
     runs-on: ubuntu-latest
     steps:
-      - name: 拉取仓库文件
+      - name: 拉取仓库代码
         uses: actions/checkout@v4
-
       - name: 安装Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
-
-      - name: 安装Newman+报告插件
-        run: npm install -g newman newman-reporter-html # 新增报告插件
-
-      - name: 执行Postman测试（生成HTML报告）
-        run: newman run test.postman_collection.json --reporters html --reporter-html-export report.html --insecure
-
-      - name: 上传HTML报告
-        uses: actions/upload-artifact@v4 # 上传报告到流水线
+      - name: 安装Newman和报告插件
+        run: npm install -g newman newman-reporter-html --registry=https://registry.npmmirror.com
+      - name: 运行接口测试生成报告
+        run: |
+          newman run test.postman_collection.json \
+          -r html --reporter-html-export report.html \
+          --insecure
+      - name: 上传HTML测试报告
+        uses: actions/upload-artifact@v4
         with:
           name: 接口测试报告
-          path: report.html # 报告文件路径
+          path: report.html
