@@ -41,7 +41,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "{{Authorization}}",
+						"value": "D6VJ4MS+q/pv3pobo81gpKEIbmXKn3IHwj085e5EwIook3wWXduPIAxcmZk19RaotDH7DesyZwAcCo5aDP9CdAghMlbYHn69R6KwALnPhxdPcKimkEK23g==",
 						"type": "text"
 					}
 				],
@@ -94,7 +94,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "{{Authorization}}",
+						"value": "D6VJ4MS+q/pv3pobo81gpKEIbmXKn3IHwj085e5EwIook3wWXduPIAxcmZk19RaotDH7DesyZwAcCo5aDP9CdAghMlbYHn69R6KwALnPhxdPcKimkEK23g==",
 						"type": "text"
 					}
 				],
