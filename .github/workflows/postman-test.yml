@@ -1,7 +1,7 @@
-name: Postman接口自动化测试
+name: Postman接口自动化（带HTML报告）
 on:
   push:
-    branches: [ main ] # 提交代码到main分支时自动触发
+    branches: [ main ] # 提交代码自动触发
 
 jobs:
   test:
@@ -15,8 +15,14 @@ jobs:
         with:
           node-version: 18
 
-      - name: 安装Newman
-        run: npm install -g newman
+      - name: 安装Newman+报告插件
+        run: npm install -g newman newman-reporter-html # 新增报告插件
 
-      - name: 执行Postman测试
-        run: newman run test.postman_collection.json --insecure
+      - name: 执行Postman测试（生成HTML报告）
+        run: newman run test.postman_collection.json --reporters html --reporter-html-export report.html --insecure
+
+      - name: 上传HTML报告
+        uses: actions/upload-artifact@v4 # 上传报告到流水线
+        with:
+          name: 接口测试报告
+          path: report.html # 报告文件路径
